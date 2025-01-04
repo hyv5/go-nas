@@ -1,10 +1,10 @@
 package prom
 
 import (
-	"github.com/LyricTian/gin-admin/v10/internal/config"
-	"github.com/LyricTian/gin-admin/v10/pkg/promx"
-	"github.com/LyricTian/gin-admin/v10/pkg/util"
 	"github.com/gin-gonic/gin"
+	"github.com/hyv5/go-nas/internal/config"
+	"github.com/hyv5/go-nas/pkg/promx"
+	"github.com/hyv5/go-nas/pkg/util"
 )
 
 var (

@@ -27,6 +27,7 @@ tmp
 /internal/swagger/v3/.openapi-generator
 /internal/swagger/v3/.openapi-generator-ignore
 
+/build
 # IDE configs
 .idea
 .vscode

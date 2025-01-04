@@ -8,12 +8,12 @@ import (
 	"os"
 	"strings"
 
-	"github.com/LyricTian/gin-admin/v10/internal/config"
-	_ "github.com/LyricTian/gin-admin/v10/internal/swagger"
-	"github.com/LyricTian/gin-admin/v10/internal/utility/prom"
-	"github.com/LyricTian/gin-admin/v10/internal/wirex"
-	"github.com/LyricTian/gin-admin/v10/pkg/logging"
-	"github.com/LyricTian/gin-admin/v10/pkg/util"
+	"github.com/hyv5/go-nas/internal/config"
+	_ "github.com/hyv5/go-nas/internal/swagger"
+	"github.com/hyv5/go-nas/internal/utility/prom"
+	"github.com/hyv5/go-nas/internal/wirex"
+	"github.com/hyv5/go-nas/pkg/logging"
+	"github.com/hyv5/go-nas/pkg/util"
 	"go.uber.org/zap"
 )
 

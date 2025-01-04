@@ -12,13 +12,13 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/LyricTian/gin-admin/v10/internal/config"
-	"github.com/LyricTian/gin-admin/v10/internal/mods/rbac/dal"
-	"github.com/LyricTian/gin-admin/v10/internal/mods/rbac/schema"
-	"github.com/LyricTian/gin-admin/v10/pkg/cachex"
-	"github.com/LyricTian/gin-admin/v10/pkg/logging"
-	"github.com/LyricTian/gin-admin/v10/pkg/util"
 	"github.com/casbin/casbin/v2"
+	"github.com/hyv5/go-nas/internal/config"
+	"github.com/hyv5/go-nas/internal/mods/rbac/dal"
+	"github.com/hyv5/go-nas/internal/mods/rbac/schema"
+	"github.com/hyv5/go-nas/pkg/cachex"
+	"github.com/hyv5/go-nas/pkg/logging"
+	"github.com/hyv5/go-nas/pkg/util"
 	"go.uber.org/zap"
 )
 

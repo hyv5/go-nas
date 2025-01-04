@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/LyricTian/gin-admin/v10/pkg/logging"
-	"github.com/LyricTian/gin-admin/v10/pkg/util"
 	"github.com/gin-gonic/gin"
+	"github.com/hyv5/go-nas/pkg/logging"
+	"github.com/hyv5/go-nas/pkg/util"
 	"github.com/rs/xid"
 )
 

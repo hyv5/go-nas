@@ -4,12 +4,12 @@ import (
 	"context"
 	"time"
 
-	"github.com/LyricTian/gin-admin/v10/internal/config"
-	"github.com/LyricTian/gin-admin/v10/internal/mods"
-	"github.com/LyricTian/gin-admin/v10/pkg/cachex"
-	"github.com/LyricTian/gin-admin/v10/pkg/gormx"
-	"github.com/LyricTian/gin-admin/v10/pkg/jwtx"
 	"github.com/golang-jwt/jwt"
+	"github.com/hyv5/go-nas/internal/config"
+	"github.com/hyv5/go-nas/internal/mods"
+	"github.com/hyv5/go-nas/pkg/cachex"
+	"github.com/hyv5/go-nas/pkg/gormx"
+	"github.com/hyv5/go-nas/pkg/jwtx"
 	"gorm.io/gorm"
 )
 

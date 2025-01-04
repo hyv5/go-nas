@@ -1,4 +1,4 @@
-module github.com/LyricTian/gin-admin/v10
+module github.com/hyv5/go-nas
 
 go 1.19
 

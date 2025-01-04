@@ -6,10 +6,10 @@ import (
 	"os"
 	"testing"
 
-	"github.com/LyricTian/gin-admin/v10/internal/config"
-	"github.com/LyricTian/gin-admin/v10/internal/wirex"
 	"github.com/gavv/httpexpect/v2"
 	"github.com/gin-gonic/gin"
+	"github.com/hyv5/go-nas/internal/config"
+	"github.com/hyv5/go-nas/internal/wirex"
 )
 
 const (

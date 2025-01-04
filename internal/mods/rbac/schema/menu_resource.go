@@ -3,8 +3,8 @@ package schema
 import (
 	"time"
 
-	"github.com/LyricTian/gin-admin/v10/internal/config"
-	"github.com/LyricTian/gin-admin/v10/pkg/util"
+	"github.com/hyv5/go-nas/internal/config"
+	"github.com/hyv5/go-nas/pkg/util"
 )
 
 // Menu resource management for RBAC

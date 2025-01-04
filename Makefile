@@ -1,51 +1,45 @@
-.PHONY: start build
+# 设置变量
+APP_NAME := myapp
+OUT_DIR := build
+ADB_PATH := adb
+DEVICE_PATH := /data/local/tmp
+PLATFORMS := $(shell cat configs/platforms.ini)
+MAIN_FILE := $(shell find ./cmd -type f -name "main.go")
+BINS := $(wildcard build/android_*/*)
+# 默认目标
+all: build
 
-NOW = $(shell date -u '+%Y%m%d%I%M%S')
-
-RELEASE_VERSION = v10.1.0
-
-APP 			= ginadmin
-SERVER_BIN  	= ${APP}
-GIT_COUNT 		= $(shell git rev-list --all --count)
-GIT_HASH        = $(shell git rev-parse --short HEAD)
-RELEASE_TAG     = $(RELEASE_VERSION).$(GIT_COUNT).$(GIT_HASH)
-
-CONFIG_DIR       = ./configs
-CONFIG_FILES     = dev
-STATIC_DIR       = ./build/dist
-START_ARGS       = -d $(CONFIG_DIR) -c $(CONFIG_FILES) -s $(STATIC_DIR)
-
-all: start
-
-start:
-	@go run -ldflags "-X main.VERSION=$(RELEASE_TAG)" main.go start $(START_ARGS)
-
-build:
-	@go build -ldflags "-w -s -X main.VERSION=$(RELEASE_TAG)" -o $(SERVER_BIN)
-
-build-linux:
-	CGO_ENABLED=1 GOOS=linux GOARCH=amd64 CC="zig cc -target x86_64-linux-musl" CXX="zig c++ -target x86_64-linux-musl" CGO_CFLAGS="-D_LARGEFILE64_SOURCE" go build -ldflags "-w -s -X main.VERSION=$(RELEASE_TAG)" -o $(SERVER_BIN)_linux_amd64
-
-# go install github.com/google/wire/cmd/wire@latest
-wire:
-	@wire gen ./internal/wirex
-
-# go install github.com/swaggo/swag/cmd/swag@latest
-swagger:
-	@swag init --parseDependency --generalInfo ./main.go --output ./internal/swagger
-
-# https://github.com/OpenAPITools/openapi-generator
-openapi:
-	docker run --rm -v ${PWD}:/local openapitools/openapi-generator-cli generate -i /local/internal/swagger/swagger.yaml -g openapi -o /local/internal/swagger/v3
-
+# 清理生成的文件
 clean:
-	rm -rf data $(SERVER_BIN)
+	@rm -rf $(OUT_DIR)
+	@echo "Cleaned build directory."
 
-serve: build
-	./$(SERVER_BIN) start $(START_ARGS)
+# 推送到设备
+push: build
+	@for BIN in $(BINS); do \
+		file=$$(basename $$(dirname $$BIN)); \
+		echo "Pushing $$file"; \
+		$(ADB_PATH) push $$BIN $(DEVICE_PATH)/$$file; \
+	done
 
-serve-d: build
-	./$(SERVER_BIN) start $(START_ARGS) -d
-
-stop:
-	./$(SERVER_BIN) stop
+# 运行程序
+run: push
+	@$(ADB_PATH) shell $(DEVICE_PATH)/$(APP_NAME)
+build: clean
+	@for plat in $(PLATFORMS); do \
+		platform=$$(echo $$plat | cut -d ',' -f 1); \
+		arch=$$(echo $$plat | cut -d ',' -f 2); \
+		for main in $(MAIN_FILE); do \
+			program=$$(basename $$(dirname $$main)); \
+			echo "Processing platform: $$platform arch: $$arch program: $$program"; \
+			GOOS=$$platform GOARCH=$$arch go build -o $(OUT_DIR)/$${platform}_$${arch}/$$program $$main; \
+		done;\
+	done
+# 帮助信息
+help:
+	@echo "Makefile Usage:"
+	@echo "  make build       - Build the application for all architectures."
+	@echo "  make clean       - Clean up the build directory."
+	@echo "  make push        - Push the ARM64 binary to the Android device."
+	@echo "  make run         - Push and run the application on the Android device."
+	@echo "  make help        - Show this help message."

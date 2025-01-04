@@ -4,9 +4,9 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/LyricTian/gin-admin/v10/internal/mods/rbac/schema"
-	"github.com/LyricTian/gin-admin/v10/pkg/errors"
-	"github.com/LyricTian/gin-admin/v10/pkg/util"
+	"github.com/hyv5/go-nas/internal/mods/rbac/schema"
+	"github.com/hyv5/go-nas/pkg/errors"
+	"github.com/hyv5/go-nas/pkg/util"
 	"gorm.io/gorm"
 )
 

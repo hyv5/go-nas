@@ -3,16 +3,16 @@ package main
 import (
 	"os"
 
-	"github.com/LyricTian/gin-admin/v10/cmd"
+	"github.com/hyv5/go-nas/cmd/server/cmd"
 	"github.com/urfave/cli/v2"
 )
 
 // Usage: go build -ldflags "-X main.VERSION=x.x.x"
 var VERSION = "v10.1.0"
 
-// @title ginadmin
+// @title go-nas
 // @version v10.1.0
-// @description A lightweight, flexible, elegant and full-featured RBAC scaffolding based on GIN + GORM 2.0 + Casbin 2.0 + Wire DI.
+// @description A simple NAS server design for old android phone
 // @securityDefinitions.apikey ApiKeyAuth
 // @in header
 // @name Authorization
@@ -20,9 +20,9 @@ var VERSION = "v10.1.0"
 // @basePath /
 func main() {
 	app := cli.NewApp()
-	app.Name = "ginadmin"
+	app.Name = "go-nas"
 	app.Version = VERSION
-	app.Usage = "A lightweight, flexible, elegant and full-featured RBAC scaffolding based on GIN + GORM 2.0 + Casbin 2.0 + Wire DI."
+	app.Usage = "A simple NAS server design for old android phone"
 	app.Commands = []*cli.Command{
 		cmd.StartCmd(),
 		cmd.StopCmd(),

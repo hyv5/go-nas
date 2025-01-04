@@ -1,10 +1,10 @@
 package api
 
 import (
-	"github.com/LyricTian/gin-admin/v10/internal/mods/rbac/biz"
-	"github.com/LyricTian/gin-admin/v10/internal/mods/rbac/schema"
-	"github.com/LyricTian/gin-admin/v10/pkg/util"
 	"github.com/gin-gonic/gin"
+	"github.com/hyv5/go-nas/internal/mods/rbac/biz"
+	"github.com/hyv5/go-nas/internal/mods/rbac/schema"
+	"github.com/hyv5/go-nas/pkg/util"
 )
 
 // Role management for RBAC
